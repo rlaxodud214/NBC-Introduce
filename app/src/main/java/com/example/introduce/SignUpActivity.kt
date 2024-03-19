@@ -28,6 +28,10 @@ class SignUpActivity : AppCompatActivity() {
                 Toast.makeText(this, "입력되지 않은 정보가 있습니다", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
+            // 종료 시, 이전 Activity에 데이터를 넘기는 방법 -> setResult
+            // TODO: Option 1번에 있었음
+//            intent.putExtra("userID", editTextID.text)
+//            setResult(RESULT_OK, intent)
             finish()
         }
     }
