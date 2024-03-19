@@ -12,9 +12,10 @@
     tools:context=".SignInActivity">
 
     <ImageView
+        android:id="@+id/iv_profileImg"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:src="@drawable/kotlin_logo"
+        android:src="@drawable/ic_intj"
         android:layout_weight="1.0" />
 
     <LinearLayout
