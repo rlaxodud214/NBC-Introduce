@@ -1,4 +1,5 @@
 <resources>
+    <!--SignIn-->
     <string name="app_name">Introduce</string>
     <string name="id">아이디</string>
     <string name="hint_id">아이디를 입력하세요.</string>
@@ -6,4 +7,8 @@
     <string name="hint_pw">비밀번호를 입력하세요.</string>
     <string name="sign_in">로그인</string>
     <string name="sign_up">회원가입</string>
+
+    <!--SignUp-->
+    <string name="name">이름</string>
+    <string name="hint_name">이름를 입력하세요.</string>
 </resources>
