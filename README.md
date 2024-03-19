@@ -1,6 +1,6 @@
 > Level 1. 로그인 페이지 만들기(SignInActivity)
-- [ ]  새 프로젝트를 만들고 MainActivity의 이름을 SignInActivity로 바꿔주세요.
-- [ ]  로고 이미지는 원하는 이미지로 넣어주세요.
+- [x]  새 프로젝트를 만들고 MainActivity의 이름을 SignInActivity로 바꿔주세요.
+- [x]  로고 이미지는 원하는 이미지로 넣어주세요.
 - [ ]  아이디, 비밀번호를 입력 받는 EditText를 넣어주세요.(미리보기 글씨(플레이스 홀더) 포함)
 - [ ]  비밀번호 EditText는 입력 내용이 가려져야 합니다.(●●● 처리)
 - [ ]  로그인 버튼을 누르면 HomeActivity가 실행되도록 구현합니다.
