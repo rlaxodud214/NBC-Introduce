@@ -29,9 +29,9 @@ class SignUpActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             // 종료 시, 이전 Activity에 데이터를 넘기는 방법 -> setResult
-            // TODO: Option 1번에 있었음
-//            intent.putExtra("userID", editTextID.text)
-//            setResult(RESULT_OK, intent)
+            intent.putExtra("userID", editTextID.text.toString())
+            intent.putExtra("userPW", editTextPW.text.toString())
+            setResult(RESULT_OK, intent)
             finish()
         }
     }
