@@ -2,13 +2,16 @@ package com.example.introduce
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.example.introduce.Domain.UserData
 
 class SignInActivity : AppCompatActivity() {
     private val editTextID by lazy { findViewById<EditText>(R.id.et_id) }
@@ -16,8 +19,7 @@ class SignInActivity : AppCompatActivity() {
     private val signInButton by lazy { findViewById<Button>(R.id.btn_signIn) }
     private val signUpButton by lazy { findViewById<Button>(R.id.btn_signUp) }
 
-    private lateinit var userID: String
-    private lateinit var userPW: String
+    private lateinit var userData: UserData
 
     /* ref: https://android-developer.tistory.com/7
     startActivityForResult는 Deprecated되고, 대체로 registerForActivityResult를 사용함
@@ -26,6 +28,7 @@ class SignInActivity : AppCompatActivity() {
      */
 
     // registerForActivityResult는 FirstFragment.kt 전역 부분에 선언하고 정의해야한다
+    // @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     private var resultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode != Activity.RESULT_OK) {
@@ -33,18 +36,22 @@ class SignInActivity : AppCompatActivity() {
             }
 
             // 전달 받은 String 데이터를 출력
-            if (result.data?.extras?.size() == 2) {
-                userID = result.data?.getStringExtra("userID")!!
-                userPW = result.data?.getStringExtra("userPW")!!
+            if (result.data?.extras?.size() == 1) {
+                // 기존에는 getSerializableExtra("key") as T? 를 썻지만
+                // 현재는 더 안전하다고 하는 getSerializableExtra("key", T::class.java)가 권장됨
+                // 다만 OS: Android 13(API 33)이상의 최신 폰이 요구되므로 쓰일지 모르겠다!! 일단 as 쓰자.
 
-                if (this::userID.isInitialized) {
-                    editTextID.setText(userID)
-                    Log.d("Debuging userID", userID)
-                }
+                // userData = result.data?.getSerializableExtra("userData", UserData::class.java)!!
+                userData = result.data?.getSerializableExtra("userData") as UserData
 
-                if (this::userPW.isInitialized) {
-                    editTextPW.setText(userPW)
-                    Log.d("Debuging userPW", userPW)
+                if (this::userData.isInitialized) {
+                    userData.run {
+                        editTextID.setText(id)
+                        editTextPW.setText(password)
+                        Log.d("Debuging userID", id)
+                        Log.d("Debuging userPW", password)
+                    }
+
                 }
             }
         }

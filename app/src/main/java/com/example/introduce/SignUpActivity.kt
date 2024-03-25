@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.introduce.ViewModel.UserDataViewModel
+import com.example.introduce.Domain.UserData
 
 class SignUpActivity : AppCompatActivity() {
     private val editTextName by lazy { findViewById<EditText>(R.id.et_name) }
@@ -48,13 +49,12 @@ class SignUpActivity : AppCompatActivity() {
             val resultText = "이름 : ${it.name}, 아이디 : ${it.id}, 비밀번호 : ${it.password}"
             Toast.makeText(this, resultText, Toast.LENGTH_LONG).show()
 
-            exitActivity()
+            exitActivity(it)
         }
     }
 
-    private fun exitActivity() {
-        intent.putExtra("userID", editTextID.text.toString())
-        intent.putExtra("userPW", editTextPW.text.toString())
+    private fun exitActivity(userData: UserData) {
+        intent.putExtra("userData", userData)
         setResult(RESULT_OK, intent)
 
         finish()
