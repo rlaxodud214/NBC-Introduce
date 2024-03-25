@@ -19,7 +19,7 @@ class SignInActivity : AppCompatActivity() {
     private lateinit var userID: String
     private lateinit var userPW: String
 
-    /*
+    /* ref: https://android-developer.tistory.com/7
     startActivityForResult는 Deprecated되고, 대체로 registerForActivityResult를 사용함
     제거된 이유 : 새롭게 연 Activity에서 메모리를 많이 사용할 경우 이전에 열려있던 Activity가 죽어 callBack을 받지 못할 때가 있었다.
     이를 방지하기 위해 새로운 Activity를 실행하는 부분과 callBack 부분을 분리함 -> 이게 registerForActivityResult
@@ -28,21 +28,23 @@ class SignInActivity : AppCompatActivity() {
     // registerForActivityResult는 FirstFragment.kt 전역 부분에 선언하고 정의해야한다
     private var resultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                // 전달 받은 String 데이터를 출력
-                if (result.data?.extras?.size() == 2) {
-                    userID = result.data?.getStringExtra("userID")!!
-                    userPW = result.data?.getStringExtra("userPW")!!
+            if (result.resultCode != Activity.RESULT_OK) {
+                return@registerForActivityResult
+            }
 
-                    if (this::userID.isInitialized) {
-                        editTextID.setText(userID)
-                        Log.d("Debuging userID", userID)
-                    }
+            // 전달 받은 String 데이터를 출력
+            if (result.data?.extras?.size() == 2) {
+                userID = result.data?.getStringExtra("userID")!!
+                userPW = result.data?.getStringExtra("userPW")!!
 
-                    if (this::userPW.isInitialized) {
-                        editTextPW.setText(userPW)
-                        Log.d("Debuging userPW", userPW)
-                    }
+                if (this::userID.isInitialized) {
+                    editTextID.setText(userID)
+                    Log.d("Debuging userID", userID)
+                }
+
+                if (this::userPW.isInitialized) {
+                    editTextPW.setText(userPW)
+                    Log.d("Debuging userPW", userPW)
                 }
             }
         }
