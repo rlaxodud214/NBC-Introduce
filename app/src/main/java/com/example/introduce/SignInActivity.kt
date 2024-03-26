@@ -39,7 +39,7 @@ class SignInActivity : AppCompatActivity() {
             if (result.data?.extras?.size() == 1) {
                 // 기존에는 getSerializableExtra("key") as T? 를 썻지만
                 // 현재는 더 안전하다고 하는 getSerializableExtra("key", T::class.java)가 권장됨
-                // 다만 OS: Android 13(API 33)이상의 최신 폰이 요구되므로 쓰일지 모르겠다!! 일단 as 쓰자.
+                // 다만 OS: Android 13(API 33)이상의 최신 폰이 요구되므로 쓰일지 모르겠다!! 일단 as 쓰자. 
 
                 // userData = result.data?.getSerializableExtra("userData", UserData::class.java)!!
                 userData = result.data?.getSerializableExtra("userData") as UserData

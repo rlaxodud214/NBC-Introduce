@@ -1,99 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/SignUp"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="4"
-    android:padding="24dp"
-    android:background="@color/white"
-    tools:context=".SignInActivity">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:src="@drawable/user_icon"
-        android:padding="16dp"
-        android:layout_weight="1.0" />
+<ScrollView
+    android:fillViewport="true"
+    android:scrollbars="none"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
 
     <LinearLayout
+        android:id="@+id/SignUp"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="24dp"
-        android:layout_weight="2.4">
+        android:padding="24dp"
+        android:background="@color/white"
+        tools:context=".SignInActivity">
 
-        <TextView
-            android:id="@+id/tv_name"
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@drawable/user_icon"
+            android:scaleType="fitCenter"
+            android:padding="16dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="24dp">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="@string/name"
+                style="@style/textStyle_Bold16"/>
+
+            <EditText
+                android:id="@+id/et_name"
+                android:textSize="16sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:hint="@string/hint_name"
+                android:nextFocusDown="@id/et_email"
+                android:singleLine="true"/>
+
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+
+                android:text="@string/email"
+                style="@style/textStyle_Bold16"/>
+
+            <EditText
+                android:id="@+id/et_email"
+                android:textSize="16sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:hint="@string/hint_email"
+                android:inputType="textEmailAddress"
+                android:nextFocusDown="@id/et_id"
+                android:singleLine="true"/>
+
+
+            <TextView
+                android:id="@+id/tv_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+
+                android:text="@string/id"
+                style="@style/textStyle_Bold16"/>
+
+            <EditText
+                android:id="@+id/et_id"
+                android:textSize="16sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:hint="@string/hint_id"
+                android:nextFocusDown="@id/et_pw"
+                android:singleLine="true"/>
+
+
+            <TextView
+                android:id="@+id/tv_pw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+
+                android:text="@string/pw"
+                style="@style/textStyle_Bold16"/>
+
+            <EditText
+                android:id="@+id/et_pw"
+                android:textSize="16sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:hint="@string/hint_pw"
+                android:inputType="textPassword"
+                android:nextFocusDown="@id/et_pw_confirm"
+                android:singleLine="true"/>
+
+
+            <TextView
+                android:id="@+id/tv_pw_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+
+                android:text="@string/pw_confirm"
+                style="@style/textStyle_Bold16"/>
+
+            <EditText
+                android:id="@+id/et_pw_confirm"
+                android:textSize="16sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:hint="@string/hint_pw"
+                android:inputType="textPassword"
+                android:imeOptions="actionDone"
+                android:nextFocusForward="@id/btn_signUp"
+                android:singleLine="true"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_signUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/sign_up"
             style="@style/textStyle_Bold16"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/name"/>
-
-        <EditText
-            android:id="@+id/et_name"
-            android:textSize="16sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints="emailAddress"
-            android:hint="@string/hint_name"/>
-
-
-        <TextView
-            android:id="@+id/tv_id"
-            style="@style/textStyle_Bold16"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/id"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/et_id"
-            android:textSize="16sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_id"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_id1" />
-
-
-        <TextView
-            android:id="@+id/tv_pw"
-            style="@style/textStyle_Bold16"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/pw"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_id1" />
-
-        <EditText
-            android:id="@+id/et_pw"
-            android:textSize="16sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_pw"
-            android:inputType="textPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_pw1" />
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_signUp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/sign_up"
-        style="@style/textStyle_Bold16"
-        android:textColor="@color/white"/>
+</ScrollView>
 
-</LinearLayout>
+
+
+

@@ -13,11 +13,7 @@ class UserDataViewModel : ViewModel() {
     private var _userData = MutableLiveData<UserData>()
     val userData: LiveData<UserData> get() = _userData
 
-    fun setUserData(
-        name: String,
-        id: String,
-        password: String,
-    ) {
+    fun setUserData(name: String, id: String, password: String) {
         invalidate(name, id, password)
         if (isValidateUserData.value == false) {
             return
@@ -26,11 +22,7 @@ class UserDataViewModel : ViewModel() {
         _userData.value = UserData(name, id, password)
     }
 
-    private fun invalidate(
-        name: String,
-        id: String,
-        password: String,
-    ) {
+    private fun invalidate(name: String, id: String, password: String) {
         _isValidateUserData.value = name.isNotEmpty() && id.isNotEmpty() && password.isNotEmpty()
     }
 }
