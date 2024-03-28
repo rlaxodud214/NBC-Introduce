@@ -1,10 +1,10 @@
-package com.example.introduce.ViewModel
+package com.example.introduce.viewModel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.introduce.Domain.UserData
+import com.example.introduce.domain.UserData
 import java.util.regex.Pattern
 
 class UserDataViewModel : ViewModel() {

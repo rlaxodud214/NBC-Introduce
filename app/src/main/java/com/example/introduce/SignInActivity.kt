@@ -2,24 +2,18 @@ package com.example.introduce
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.example.introduce.Domain.UserData
+import androidx.databinding.DataBindingUtil
+import com.example.introduce.domain.UserData
+import com.example.introduce.databinding.ActivitySignInBinding
 
 class SignInActivity : AppCompatActivity() {
-    private val editTextID by lazy { findViewById<EditText>(R.id.et_id) }
-    private val editTextPW by lazy { findViewById<EditText>(R.id.et_pw) }
-    private val signInButton by lazy { findViewById<Button>(R.id.btn_signIn) }
-    private val signUpButton by lazy { findViewById<Button>(R.id.btn_signUp) }
-
     private lateinit var userData: UserData
+    private lateinit var binding: ActivitySignInBinding
 
     /* ref: https://android-developer.tistory.com/7
     startActivityForResult는 Deprecated되고, 대체로 registerForActivityResult를 사용함
@@ -44,36 +38,28 @@ class SignInActivity : AppCompatActivity() {
                 // userData = result.data?.getSerializableExtra("userData", UserData::class.java)!!
                 userData = result.data?.getSerializableExtra("userData") as UserData
 
-                if (this::userData.isInitialized) {
-                    userData.run {
-                        editTextID.setText(id)
-                        editTextPW.setText(password)
-                        Log.d("Debuging userID", id)
-                        Log.d("Debuging userPW", password)
-                    }
-
-                }
+                binding.user = userData
             }
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_in)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_in)
 
         initSignInButton()
         initSignUpButton()
     }
 
     private fun initSignInButton() {
-        signInButton.setOnClickListener {
-            if (isEmpty(editTextID) || isEmpty(editTextPW)) {
+        binding.btnSignIn.setOnClickListener {
+            if (isEmpty(binding.etId) || isEmpty(binding.etPw)) {
                 Toast.makeText(this, "아이디/비밀번호를 확인해주세요", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
             Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
 
             val intent = Intent(this, HomeActivity::class.java)
-            intent.putExtra("userID", editTextID.text.toString()) // userID
+            intent.putExtra("userID", binding.etId.text.toString()) // userID
             startActivity(intent)
         }
     }
@@ -81,7 +67,7 @@ class SignInActivity : AppCompatActivity() {
     private fun isEmpty(editText: EditText) = editText.text.isEmpty()
 
     private fun initSignUpButton() {
-        signUpButton.setOnClickListener {
+        binding.btnSignUp.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
 
             resultLauncher.launch(intent)

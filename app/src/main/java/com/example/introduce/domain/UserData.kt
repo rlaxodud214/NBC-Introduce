@@ -1,4 +1,4 @@
-package com.example.introduce.Domain
+package com.example.introduce.domain
 
 import java.io.Serializable
 

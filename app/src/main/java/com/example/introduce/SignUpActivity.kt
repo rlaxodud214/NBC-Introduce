@@ -6,8 +6,8 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.example.introduce.ViewModel.UserDataViewModel
-import com.example.introduce.Domain.UserData
+import com.example.introduce.viewModel.UserDataViewModel
+import com.example.introduce.domain.UserData
 
 class SignUpActivity : AppCompatActivity() {
     private val editTextName by lazy { findViewById<EditText>(R.id.et_name) }
